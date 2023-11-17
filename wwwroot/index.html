@@ -1,0 +1,22 @@
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+<div id="app">{{ message }}</div>
+
+<script>
+  const { createApp, ref } = Vue
+
+  createApp({
+    setup() {
+      const message = ref('Startup Idea')
+      return {
+        message
+      }
+    }
+  }).mount('#app')
+</script>
+
+<form method="POST" action="/api/">
+	<textarea name="data" rows="3" cols="32"></textarea><br />
+	<input type="submit" value="Analyze">
+</form>
+<br /><img src="images/nicole_ai.png" />

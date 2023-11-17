@@ -1,0 +1,16 @@
+{
+  "name": "Nicole AI",
+  "version": "1.0.0",
+  "description": "Nicole AI Server",
+  "main": "api.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "serve-handler": "^6.1.5",
+    "sync-request": "^6.1.0"
+  }
+}
