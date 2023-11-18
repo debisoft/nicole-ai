@@ -1,6 +1,187 @@
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 
-<div id="app">{{ message }}</div>
+<div id="app">
+  <!-- <form method="POST" action="/api/">
+    <textarea name="data" rows="3" cols="32"></textarea><br />
+    <input type="submit" value="Analyze">
+  </form>
+  <br /><img src="images/nicole_ai.png" /> -->
+  
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    rel="stylesheet"
+  />
+
+  <div class="grid gap-4 mx-64">
+
+    <!-- tab -->
+    <div class="mt-16 text-white text-4xl font-bold text-left">
+      <!-- title -->
+      <button
+      v-for="tab in tabs"
+      :key="tab.name"
+      @click="activeTab = tab.name"
+      :class="['w-24', 'mr-8', { 'text-white text-3xl font-bold': activeTab === tab.name, 'text-xl text-gray-500': activeTab !== tab.name }]"
+      > 
+        {{ tab.name }}
+      </button>
+    </div>
+
+    <div class="content">
+      <!-- startup content -->
+      <div v-if="activeTab === 'Startup'">
+        <!-- input box -->
+        <div class="flex justify-left mt-4 ">
+          <input
+            type="text"
+            placeholder="Describe your idea"
+            class="bg-transparent border-none placeholder-gray-400 text-white"
+          />
+        </div>
+      </div>
+      
+      <!-- teams content -->
+      <div v-if="activeTab === 'Teams'">
+        <div class="mt-4 grid gap-4">
+          <div class="flex py-2 gap-4 border-b border-white border-1">
+            <div class="text-white font-bold">
+              My company
+            </div>
+            <input
+              type="text"
+              placeholder="Describe your idea"
+              class="bg-transparent border-none placeholder-gray-400 text-white"
+            />
+          </div>
+
+          <div class="flex py-2 gap-4 border-b border-gray-200 border-1">
+            <div class="text-white font-bold">
+              Is developing
+            </div>
+            <input
+              type="text"
+              placeholder="A defined offering"
+              class="bg-transparent border-none placeholder-gray-400 text-white"
+            />
+          </div>
+
+          <div class="flex py-2 gap-4 border-b border-gray-200 border-1">
+            <div class="text-white font-bold">
+              to help
+            </div>
+            <input
+              type="text"
+              placeholder="A defined audience"
+              class="bg-transparent border-none placeholder-gray-400 text-white"
+            />
+          </div>
+
+          <div class="flex justify-between py-2 gap-4 border-b border-gray-200 border-1">
+            <input
+              type="text"
+              placeholder="Solve a problem"
+              class="bg-transparent border-none placeholder-gray-400 text-white"
+            />
+            <div class="text-white font-bold">
+                with
+            </div>
+          </div>
+
+          <div class="flex py-2 gap-4 border-b border-gray-200 border-1">
+            <input
+              type="text"
+              placeholder="Secret sauce"
+              class="bg-transparent border-none placeholder-gray-400 text-white"
+            />
+          </div>
+
+        </div>
+      </div>
+      
+      <!-- enterprise -->
+      <div v-if="activeTab === 'Enterprise'">
+        <div class="mt-4 grid gap-4">
+          <div class="flex py-2 gap-4 border-b border-white border-1">
+            <div class="text-white font-bold">
+              My company
+            </div>
+            <input
+              type="text"
+              placeholder="Describe your idea"
+              class="bg-transparent border-none placeholder-gray-400 text-white"
+            />
+          </div>
+
+          <div class="flex py-2 gap-4 border-b border-gray-200 border-1">
+            <div class="text-white font-bold">
+              Is developing
+            </div>
+            <input
+              type="text"
+              placeholder="A defined offering"
+              class="bg-transparent border-none placeholder-gray-400 text-white"
+            />
+          </div>
+
+          <div class="flex py-2 gap-4 border-b border-gray-200 border-1">
+            <div class="text-white font-bold">
+              to help
+            </div>
+            <input
+              type="text"
+              placeholder="A defined audience"
+              class="bg-transparent border-none placeholder-gray-400 text-white"
+            />
+          </div>
+
+          <div class="flex justify-between py-2 gap-4 border-b border-gray-200 border-1">
+            <input
+              type="text"
+              placeholder="Solve a problem"
+              class="bg-transparent border-none placeholder-gray-400 text-white"
+            />
+            <div class="text-white font-bold">
+                with
+            </div>
+          </div>
+
+          <div class="flex py-2 gap-4 border-b border-gray-200 border-1">
+            <input
+              type="text"
+              placeholder="Secret sauce"
+              class="bg-transparent border-none placeholder-gray-400 text-white"
+            />
+          </div>
+        </div>
+        <div class="mt-24">
+          <div class="flex py-2 gap-4 border-b border-gray-200 border-1">
+            <div class="text-white font-bold">
+              Audience
+            </div>
+            <input
+              type="text"
+              placeholder="Target audience persona"
+              class="bg-transparent border-none placeholder-gray-400 text-white"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+    <!-- button -->
+    <div class="flex justify-center mt-16">
+      <button class="flex justify-between w-32 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg inline-flex items-center">
+        <i class="fas fa-robot"></i>
+        <span>Analyze</span>
+      </button>
+    </div>
+
+    <div class="mt-32 flex justify-center mt-24">
+      <img alt="Vue logo" src="./assets/nicole_ai.png">
+    </div>  
+  </div>
+</div>
 
 <script>
   const { createApp, ref } = Vue
@@ -8,15 +189,40 @@
   createApp({
     setup() {
       const message = ref('Startup Idea')
+      const tabs = [
+        { name: 'Startup'},
+        { name: 'Teams'},
+        { name: 'Enterprise'}
+      ]
+      const activeTab = ref('Startup')
+
       return {
-        message
+        message,
+        tabs,
+        activeTab
       }
     }
   }).mount('#app')
 </script>
 
-<form method="POST" action="/api/">
-	<textarea name="data" rows="3" cols="32"></textarea><br />
-	<input type="submit" value="Analyze">
-</form>
-<br /><img src="images/nicole_ai.png" />
+
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  background-color: black;
+  height: 100vh;
+}
+
+button.active {
+  border-bottom: 2px solid white;
+}
+
+button:not(.active) {
+  border-bottom: 2px solid transparent;
+}
+</style>
+
