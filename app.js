@@ -5,6 +5,8 @@ const port = 3000
 var request = require('sync-request');
 
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static('wwwroot'));
+
 
 app.get('/', (req, res) => {
 	 handler(req, res, {	"public": "wwwroot"});
