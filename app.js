@@ -14,10 +14,10 @@ app.get('/', (req, res) => {
 
 app.post('/api/', (req, res) => {
 
-var response = request('POST', 'https://debisoft-magic.hf.space/api/predict', {
-	json: {data: [req.body.data]},
-});
-	 res.setHeader('Content-Type', 'application/json');
+	var response = request('POST', 'https://debisoft-magic.hf.space/api/predict', {
+		json: {data: [req.body.data]},
+	});
+	res.setHeader('Content-Type', 'application/json');
   res.send(response.getBody('utf8'));
 })
 
