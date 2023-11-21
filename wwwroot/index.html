@@ -23,10 +23,10 @@ rel="stylesheet"
     </div>
 
     <div class="content">
-      <!-- startup content -->
+      <!-- Startup content -->
       <div v-if="activeTab === 'Startup'">
         <form @submit.prevent="submitStartupForm">
-          <!-- input box -->
+          <!-- input area -->
           <div class="flex justify-left mt-4 ¥">
             <textarea 
             v-model="formDataStartup.idea"
@@ -37,7 +37,7 @@ rel="stylesheet"
             class="bg-transparent border-none placeholder-gray-400 text-white outline-none w-full"></textarea>
           </div>
           
-          <!-- button -->
+          <!-- submit button -->
           <div class="flex justify-center mt-12">
             <button class="flex justify-between w-32 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg inline-flex items-center">
               <i class="fas fa-robot"></i>
@@ -45,13 +45,16 @@ rel="stylesheet"
             </button>
           </div>
           
+          <!-- response display area-->
           <template v-if="Object.keys(formResultStartup).length > 0">
+            
             <div class="grid gap-6 text-white">
+              <!-- features -->
               <div class="flex flex-col items-start border-b border-gray-700">
                 <div class="text-2xl">Features</div>
                 <div class="text-sm text-left mb-2">{{formResultStartup["features"] }}</div>
               </div>
-
+              <!-- will they use -->
               <div class="flex flex-col items-start border-b border-gray-700">
                 <div class="text-2xl">Will people use?</div>
                 <div class="text-sm text-left mb-2">
@@ -63,22 +66,22 @@ rel="stylesheet"
                   </div>
                 </div>
               </div>
-
+              <!-- reason to use -->
               <div class="flex flex-col items-start border-b border-gray-700">
                 <div class="text-2xl">Reason to use</div>
                 <div class="text-sm text-left mb-2">{{formResultStartup["reason_to_use"] }}</div>
               </div>
-
+              <!-- solution -->
               <div class="flex flex-col items-start border-b border-gray-700">
                 <div class="text-2xl">Solution</div>
                 <div class="text-sm text-left mb-2">{{formResultStartup["solution"] }}</div>
               </div>
-
+              <!-- target customer -->
               <div class="flex flex-col items-start border-b border-gray-700">
                 <div class="text-2xl">Target customer</div>
                 <div class="text-sm text-left mb-2">{{formResultStartup["target_customer"] }}</div>
               </div>
-
+              <!-- will they pay -->
               <div class="flex flex-col items-start border-b border-gray-700">
                 <div class="text-2xl">Will clients buy?</div>
                 <div class="text-sm text-left mb-2">
@@ -96,9 +99,11 @@ rel="stylesheet"
         </form>
       </div>
       
-      <!-- teams content -->
+      <!-- Teams content -->
       <div v-if="activeTab === 'Teams'">
+        <!-- input area -->
         <div class="mt-4 grid gap-4">
+          <!-- My company_input box -->
           <div class="flex py-2 gap-4 border-b border-white border-1">
             <div class="text-white font-bold">
               My company
@@ -109,7 +114,7 @@ rel="stylesheet"
               class="bg-transparent border-none placeholder-gray-400 text-white"
             />
           </div>
-
+          <!-- Is developing_input box -->
           <div class="flex py-2 gap-4 border-b border-gray-200 border-1">
             <div class="text-white font-bold">
               Is developing
@@ -120,7 +125,7 @@ rel="stylesheet"
               class="bg-transparent border-none placeholder-gray-400 text-white"
             />
           </div>
-
+          <!-- to help_input box -->
           <div class="flex py-2 gap-4 border-b border-gray-200 border-1">
             <div class="text-white font-bold">
               to help
@@ -131,7 +136,7 @@ rel="stylesheet"
               class="bg-transparent border-none placeholder-gray-400 text-white"
             />
           </div>
-
+          <!-- solve a problem_input box -->
           <div class="flex justify-between py-2 gap-4 border-b border-gray-200 border-1">
             <input
               type="text"
@@ -142,7 +147,7 @@ rel="stylesheet"
                 with
             </div>
           </div>
-
+          <!-- secret sauce_input box -->
           <div class="flex py-2 gap-4 border-b border-gray-200 border-1">
             <input
               type="text"
@@ -163,9 +168,10 @@ rel="stylesheet"
         
       </div>
       
-      <!-- enterprise -->
+      <!-- Enterprise -->
       <div v-if="activeTab === 'Enterprise'">
         <div class="mt-4 grid gap-4">
+          <!-- My company_input box -->
           <div class="flex py-2 gap-4 border-b border-white border-1">
             <div class="text-white font-bold">
               My company
@@ -176,7 +182,7 @@ rel="stylesheet"
               class="bg-transparent border-none placeholder-gray-400 text-white"
             />
           </div>
-
+        <!-- Is developing_input box -->
           <div class="flex py-2 gap-4 border-b border-gray-200 border-1">
             <div class="text-white font-bold">
               Is developing
@@ -187,7 +193,7 @@ rel="stylesheet"
               class="bg-transparent border-none placeholder-gray-400 text-white"
             />
           </div>
-
+          <!-- to help_input box -->
           <div class="flex py-2 gap-4 border-b border-gray-200 border-1">
             <div class="text-white font-bold">
               to help
@@ -198,7 +204,7 @@ rel="stylesheet"
               class="bg-transparent border-none placeholder-gray-400 text-white"
             />
           </div>
-
+          <!-- with_input box -->
           <div class="flex justify-between py-2 gap-4 border-b border-gray-200 border-1">
             <input
               type="text"
@@ -209,7 +215,7 @@ rel="stylesheet"
                 with
             </div>
           </div>
-
+          <!-- secret sauce_input box -->
           <div class="flex py-2 gap-4 border-b border-gray-200 border-1">
             <input
               type="text"
@@ -218,7 +224,8 @@ rel="stylesheet"
             />
           </div>
         </div>
-
+        
+        <!-- Audience_input box -->
         <div class="mt-16">
           <div class="flex py-2 gap-4 border-b border-gray-200 border-1">
             <div class="text-white font-bold">
@@ -243,11 +250,12 @@ rel="stylesheet"
       </div>
     </div>
     
+    <!-- application image -->
     <div v-if="Object.keys(formResultStartup).length === 0" class="mt-16 flex justify-center mb-4">
       <img alt="Vue logo" src="/images/nicole_ai.png">
     </div>  
 
-
+    <!-- loading indicator -->
     <div v-if="isLoading" class="indicator-modal">
       <div class="indicator-content flex text-white font-bold">
         <div class="spinner"></div>
@@ -255,23 +263,23 @@ rel="stylesheet"
       </div>
     </div>
 
-
   </div>
 </div>
 
-<script>
+<script type="module">
   const { createApp, ref } = Vue
 
   createApp({
     setup() {
-      const message = ref('Startup Idea')
+      // common
       const tabs = [
         { name: 'Startup'},
         { name: 'Teams'},
         { name: 'Enterprise'}
       ]
       const activeTab = ref('Startup')
-      // form of startup
+
+      // Startup
       const formDataStartup = ref({
         idea: ""
       })
@@ -292,7 +300,6 @@ rel="stylesheet"
           if(!response.ok) {
             throw new Error(`HTTP error. Wait for a minute and please try again`);
           }
-
           responseData            = await response.json()
           formResultStartup.value = JSON.parse(responseData.data)
         } catch (error) {
@@ -303,13 +310,15 @@ rel="stylesheet"
       }
 
       return {
-        message,
+        // common
         tabs,
         activeTab,
+        isLoading,
+        // Startup
         formDataStartup,
         formResultStartup,
         submitStartupForm,
-        isLoading
+        
       }
     }
   }).mount('#app')
