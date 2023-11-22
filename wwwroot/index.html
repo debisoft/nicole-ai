@@ -27,14 +27,14 @@ rel="stylesheet"
       <div v-if="activeTab === 'Startup'">
         <form @submit.prevent="submitStartupForm">
           <!-- input area -->
-          <div class="flex justify-left mt-4 ¥">
+          <div class="flex justify-left mt-4">
             <textarea 
             v-model="formDataStartup.idea"
             name="data" 
             rows="3" 
             cols="32" 
             placeholder="Describe your idea"
-            class="bg-transparent border-none placeholder-gray-400 text-white outline-none w-full"></textarea>
+            class="text-md bg-transparent border-none placeholder-gray-400 text-white outline-none w-full"></textarea>
           </div>
           
           <!-- submit button -->
@@ -52,12 +52,12 @@ rel="stylesheet"
               <!-- features -->
               <div class="flex flex-col items-start border-b border-gray-700">
                 <div class="text-2xl">Features</div>
-                <div class="text-sm text-left mb-2">{{formResultStartup["features"] }}</div>
+                <div class="text-md text-left mb-2">{{formResultStartup["features"] }}</div>
               </div>
               <!-- will they use -->
               <div class="flex flex-col items-start border-b border-gray-700">
                 <div class="text-2xl">Will people use?</div>
-                <div class="text-sm text-left mb-2">
+                <div class="text-md text-left mb-2">
                   <div v-if="formResultStartup['fg_will_use']">
                     Yes, definitely
                   </div>
@@ -69,22 +69,22 @@ rel="stylesheet"
               <!-- reason to use -->
               <div class="flex flex-col items-start border-b border-gray-700">
                 <div class="text-2xl">Reason to use</div>
-                <div class="text-sm text-left mb-2">{{formResultStartup["reason_to_use"] }}</div>
+                <div class="text-md text-left mb-2">{{formResultStartup["reason_to_use"] }}</div>
               </div>
               <!-- solution -->
               <div class="flex flex-col items-start border-b border-gray-700">
                 <div class="text-2xl">Solution</div>
-                <div class="text-sm text-left mb-2">{{formResultStartup["solution"] }}</div>
+                <div class="text-md text-left mb-2">{{formResultStartup["solution"] }}</div>
               </div>
               <!-- target customer -->
               <div class="flex flex-col items-start border-b border-gray-700">
                 <div class="text-2xl">Target customer</div>
-                <div class="text-sm text-left mb-2">{{formResultStartup["target_customer"] }}</div>
+                <div class="text-md text-left mb-2">{{formResultStartup["target_customer"] }}</div>
               </div>
               <!-- will they pay -->
               <div class="flex flex-col items-start border-b border-gray-700">
                 <div class="text-2xl">Will clients buy?</div>
-                <div class="text-sm text-left mb-2">
+                <div class="text-md text-left mb-2">
                   <div v-if="formResultStartup['fg_will_pay']">
                     Yes, definitely
                   </div>
@@ -105,35 +105,35 @@ rel="stylesheet"
         <div class="mt-4 grid gap-4">
           <!-- My company_input box -->
           <div class="flex py-2 gap-4 border-b border-white border-1">
-            <div class="text-white font-bold">
+            <div class="text-white font-bold flex-shrink-0">
               My company
             </div>
             <input
               type="text"
               placeholder="Describe your idea"
-              class="bg-transparent border-none placeholder-gray-400 text-white"
+              class="bg-transparent border-none placeholder-gray-400 text-white outline-none w-full"
             />
           </div>
           <!-- Is developing_input box -->
           <div class="flex py-2 gap-4 border-b border-gray-200 border-1">
-            <div class="text-white font-bold">
+            <div class="text-white font-bold flex-shrink-0">
               Is developing
             </div>
             <input
               type="text"
               placeholder="A defined offering"
-              class="bg-transparent border-none placeholder-gray-400 text-white"
+              class="bg-transparent border-none placeholder-gray-400 text-white outline-none w-full"
             />
           </div>
           <!-- to help_input box -->
           <div class="flex py-2 gap-4 border-b border-gray-200 border-1">
-            <div class="text-white font-bold">
+            <div class="text-white font-bold flex-shrink-0">
               to help
             </div>
             <input
               type="text"
               placeholder="A defined audience"
-              class="bg-transparent border-none placeholder-gray-400 text-white"
+              class="bg-transparent border-none placeholder-gray-400 text-white outline-none w-full"
             />
           </div>
           <!-- solve a problem_input box -->
@@ -141,7 +141,7 @@ rel="stylesheet"
             <input
               type="text"
               placeholder="Solve a problem"
-              class="bg-transparent border-none placeholder-gray-400 text-white"
+              class="bg-transparent border-none placeholder-gray-400 text-white outline-none w-full"
             />
             <div class="text-white font-bold">
                 with
@@ -152,7 +152,7 @@ rel="stylesheet"
             <input
               type="text"
               placeholder="Secret sauce"
-              class="bg-transparent border-none placeholder-gray-400 text-white"
+              class="bg-transparent border-none placeholder-gray-400 text-white outline-none w-full"
             />
           </div>
 
@@ -173,35 +173,35 @@ rel="stylesheet"
         <div class="mt-4 grid gap-4">
           <!-- My company_input box -->
           <div class="flex py-2 gap-4 border-b border-white border-1">
-            <div class="text-white font-bold">
+            <div class="text-white font-bold flex-shrink-0">
               My company
             </div>
             <input
               type="text"
               placeholder="Describe your idea"
-              class="bg-transparent border-none placeholder-gray-400 text-white"
+              class="bg-transparent border-none placeholder-gray-400 text-white outline-none w-full"
             />
           </div>
         <!-- Is developing_input box -->
           <div class="flex py-2 gap-4 border-b border-gray-200 border-1">
-            <div class="text-white font-bold">
+            <div class="text-white font-bold flex-shrink-0">
               Is developing
             </div>
             <input
               type="text"
               placeholder="A defined offering"
-              class="bg-transparent border-none placeholder-gray-400 text-white"
+              class="bg-transparent border-none placeholder-gray-400 text-white outline-none w-full"
             />
           </div>
           <!-- to help_input box -->
           <div class="flex py-2 gap-4 border-b border-gray-200 border-1">
-            <div class="text-white font-bold">
+            <div class="text-white font-bold flex-shrink-0">
               to help
             </div>
             <input
               type="text"
               placeholder="A defined audience"
-              class="bg-transparent border-none placeholder-gray-400 text-white"
+              class="bg-transparent border-none placeholder-gray-400 text-white outline-none w-full"
             />
           </div>
           <!-- with_input box -->
@@ -209,7 +209,7 @@ rel="stylesheet"
             <input
               type="text"
               placeholder="Solve a problem"
-              class="bg-transparent border-none placeholder-gray-400 text-white"
+              class="bg-transparent border-none placeholder-gray-400 text-white outline-none w-full"
             />
             <div class="text-white font-bold">
                 with
@@ -220,7 +220,7 @@ rel="stylesheet"
             <input
               type="text"
               placeholder="Secret sauce"
-              class="bg-transparent border-none placeholder-gray-400 text-white"
+              class="bg-transparent border-none placeholder-gray-400 text-white outline-none w-full"
             />
           </div>
         </div>
@@ -228,13 +228,13 @@ rel="stylesheet"
         <!-- Audience_input box -->
         <div class="mt-16">
           <div class="flex py-2 gap-4 border-b border-gray-200 border-1">
-            <div class="text-white font-bold">
+            <div class="text-white font-bold flex-shrink-0">
               Audience
             </div>
             <input
               type="text"
               placeholder="Target audience persona"
-              class="bg-transparent border-none placeholder-gray-400 text-white"
+              class="bg-transparent border-none placeholder-gray-400 text-white outline-none w-full"
             />
           </div>
         </div>
@@ -259,7 +259,7 @@ rel="stylesheet"
     <div v-if="isLoading" class="indicator-modal">
       <div class="indicator-content flex text-white font-bold">
         <div class="spinner"></div>
-        <span>We are analyzing...</span>
+        <div class="flex items-center justify-center">We are analyzing...</div>
       </div>
     </div>
 
@@ -300,9 +300,10 @@ rel="stylesheet"
           if(!response.ok) {
             throw new Error(`HTTP error. Wait for a minute and please try again`);
           }
-          responseData            = await response.json()
+          var responseData        = await response.json()
           formResultStartup.value = JSON.parse(responseData.data)
         } catch (error) {
+          console.log(error)
           alert("Error")
         } finally {
           isLoading.value = false
