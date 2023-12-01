@@ -6,20 +6,12 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css
 rel="stylesheet"
 />
 
-<div id="app">
-  <!-- <form method="POST" action="/api/">
-    <textarea name="data" rows="3" cols="32"></textarea><br />
-    <input type="submit" value="Analyze">
-  </form>
-  <br /><img src="images/nicole_ai.png" /> -->
-  
-
-
+<div id="app" class="min-h-screen">
   <div class="grid gap-4 mx-64">
 
-    <!-- tab -->
+    <!-- tabs -->
     <div class="mt-16 text-white text-4xl font-bold text-left">
-      <!-- title -->
+      <!-- tab title -->
       <button
       v-for="tab in tabs"
       :key="tab.name"
@@ -31,167 +23,255 @@ rel="stylesheet"
     </div>
 
     <div class="content">
-      <!-- startup content -->
+      <!-- Startup content -->
       <div v-if="activeTab === 'Startup'">
-        <!-- input box -->
-        <div class="flex justify-left mt-4 ">
-          <input
-            type="text"
+        <form @submit.prevent="submitStartupForm">
+          <!-- input area -->
+          <div class="flex justify-left mt-4">
+            <textarea 
+            v-model="formDataStartup.idea"
+            name="data" 
+            rows="3" 
+            cols="32" 
             placeholder="Describe your idea"
-            class="bg-transparent border-none placeholder-gray-400 text-white"
-          />
-        </div>
+            class="text-md bg-transparent border-none placeholder-gray-400 text-white outline-none w-full"></textarea>
+          </div>
+          
+          <!-- submit button -->
+          <div class="flex justify-center mt-12">
+            <button class="flex justify-between w-32 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg inline-flex items-center">
+              <i class="fas fa-robot"></i>
+              <span>Analyze</span>
+            </button>
+          </div>
+          
+          <!-- response display area-->
+          <template v-if="Object.keys(formResultStartup).length > 0">
+            
+            <div class="grid gap-6 text-white">
+              <!-- features -->
+              <div class="flex flex-col items-start border-b border-gray-700">
+                <div class="text-2xl">Features</div>
+                <div class="text-md text-left mb-2">{{formResultStartup["features"] }}</div>
+              </div>
+              <!-- will they use -->
+              <div class="flex flex-col items-start border-b border-gray-700">
+                <div class="text-2xl">Will people use?</div>
+                <div class="text-md text-left mb-2">
+                  <div v-if="formResultStartup['fg_will_use']">
+                    Yes, definitely
+                  </div>
+                  <div v-else>
+                    No, it doesn't seem to be used
+                  </div>
+                </div>
+              </div>
+              <!-- reason to use -->
+              <div class="flex flex-col items-start border-b border-gray-700">
+                <div class="text-2xl">Reason to use</div>
+                <div class="text-md text-left mb-2">{{formResultStartup["reason_to_use"] }}</div>
+              </div>
+              <!-- solution -->
+              <div class="flex flex-col items-start border-b border-gray-700">
+                <div class="text-2xl">Solution</div>
+                <div class="text-md text-left mb-2">{{formResultStartup["solution"] }}</div>
+              </div>
+              <!-- target customer -->
+              <div class="flex flex-col items-start border-b border-gray-700">
+                <div class="text-2xl">Target customer</div>
+                <div class="text-md text-left mb-2">{{formResultStartup["target_customer"] }}</div>
+              </div>
+              <!-- will they pay -->
+              <div class="flex flex-col items-start border-b border-gray-700">
+                <div class="text-2xl">Will clients buy?</div>
+                <div class="text-md text-left mb-2">
+                  <div v-if="formResultStartup['fg_will_pay']">
+                    Yes, definitely
+                  </div>
+                  <div v-else>
+                    No, it looks like they won't pay
+                  </div>
+                </div>
+              </div>
+            </div>
+          </template>
+
+        </form>
       </div>
       
-      <!-- teams content -->
+      <!-- Teams content -->
       <div v-if="activeTab === 'Teams'">
+        <!-- input area -->
         <div class="mt-4 grid gap-4">
+          <!-- My company_input box -->
           <div class="flex py-2 gap-4 border-b border-white border-1">
-            <div class="text-white font-bold">
+            <div class="text-white font-bold flex-shrink-0">
               My company
             </div>
             <input
               type="text"
               placeholder="Describe your idea"
-              class="bg-transparent border-none placeholder-gray-400 text-white"
+              class="bg-transparent border-none placeholder-gray-400 text-white outline-none w-full"
             />
           </div>
-
+          <!-- Is developing_input box -->
           <div class="flex py-2 gap-4 border-b border-gray-200 border-1">
-            <div class="text-white font-bold">
+            <div class="text-white font-bold flex-shrink-0">
               Is developing
             </div>
             <input
               type="text"
               placeholder="A defined offering"
-              class="bg-transparent border-none placeholder-gray-400 text-white"
+              class="bg-transparent border-none placeholder-gray-400 text-white outline-none w-full"
             />
           </div>
-
+          <!-- to help_input box -->
           <div class="flex py-2 gap-4 border-b border-gray-200 border-1">
-            <div class="text-white font-bold">
+            <div class="text-white font-bold flex-shrink-0">
               to help
             </div>
             <input
               type="text"
               placeholder="A defined audience"
-              class="bg-transparent border-none placeholder-gray-400 text-white"
+              class="bg-transparent border-none placeholder-gray-400 text-white outline-none w-full"
             />
           </div>
-
+          <!-- solve a problem_input box -->
           <div class="flex justify-between py-2 gap-4 border-b border-gray-200 border-1">
             <input
               type="text"
               placeholder="Solve a problem"
-              class="bg-transparent border-none placeholder-gray-400 text-white"
+              class="bg-transparent border-none placeholder-gray-400 text-white outline-none w-full"
             />
             <div class="text-white font-bold">
                 with
             </div>
           </div>
-
+          <!-- secret sauce_input box -->
           <div class="flex py-2 gap-4 border-b border-gray-200 border-1">
             <input
               type="text"
               placeholder="Secret sauce"
-              class="bg-transparent border-none placeholder-gray-400 text-white"
+              class="bg-transparent border-none placeholder-gray-400 text-white outline-none w-full"
             />
           </div>
 
         </div>
+
+        <!-- disabled button -->
+        <div class="flex justify-center mt-12">
+          <button disabled class="bg-gray-500 w-48 text-white font-bold py-2 px-4 rounded opacity-50 cursor-not-allowed">
+            <i class="fas fa-robot mr-2"></i>
+            <span>Coming soon...</span>
+          </button>
+        </div>
+        
       </div>
       
-      <!-- enterprise -->
+      <!-- Enterprise -->
       <div v-if="activeTab === 'Enterprise'">
         <div class="mt-4 grid gap-4">
+          <!-- My company_input box -->
           <div class="flex py-2 gap-4 border-b border-white border-1">
-            <div class="text-white font-bold">
+            <div class="text-white font-bold flex-shrink-0">
               My company
             </div>
             <input
               type="text"
               placeholder="Describe your idea"
-              class="bg-transparent border-none placeholder-gray-400 text-white"
+              class="bg-transparent border-none placeholder-gray-400 text-white outline-none w-full"
             />
           </div>
-
+        <!-- Is developing_input box -->
           <div class="flex py-2 gap-4 border-b border-gray-200 border-1">
-            <div class="text-white font-bold">
+            <div class="text-white font-bold flex-shrink-0">
               Is developing
             </div>
             <input
               type="text"
               placeholder="A defined offering"
-              class="bg-transparent border-none placeholder-gray-400 text-white"
+              class="bg-transparent border-none placeholder-gray-400 text-white outline-none w-full"
             />
           </div>
-
+          <!-- to help_input box -->
           <div class="flex py-2 gap-4 border-b border-gray-200 border-1">
-            <div class="text-white font-bold">
+            <div class="text-white font-bold flex-shrink-0">
               to help
             </div>
             <input
               type="text"
               placeholder="A defined audience"
-              class="bg-transparent border-none placeholder-gray-400 text-white"
+              class="bg-transparent border-none placeholder-gray-400 text-white outline-none w-full"
             />
           </div>
-
+          <!-- with_input box -->
           <div class="flex justify-between py-2 gap-4 border-b border-gray-200 border-1">
             <input
               type="text"
               placeholder="Solve a problem"
-              class="bg-transparent border-none placeholder-gray-400 text-white"
+              class="bg-transparent border-none placeholder-gray-400 text-white outline-none w-full"
             />
             <div class="text-white font-bold">
                 with
             </div>
           </div>
-
+          <!-- secret sauce_input box -->
           <div class="flex py-2 gap-4 border-b border-gray-200 border-1">
             <input
               type="text"
               placeholder="Secret sauce"
-              class="bg-transparent border-none placeholder-gray-400 text-white"
+              class="bg-transparent border-none placeholder-gray-400 text-white outline-none w-full"
             />
           </div>
         </div>
-        <div class="mt-24">
+        
+        <!-- Audience_input box -->
+        <div class="mt-16">
           <div class="flex py-2 gap-4 border-b border-gray-200 border-1">
-            <div class="text-white font-bold">
+            <div class="text-white font-bold flex-shrink-0">
               Audience
             </div>
             <input
               type="text"
               placeholder="Target audience persona"
-              class="bg-transparent border-none placeholder-gray-400 text-white"
+              class="bg-transparent border-none placeholder-gray-400 text-white outline-none w-full"
             />
           </div>
         </div>
+
+        <!-- disabled button -->
+        <div class="flex justify-center mt-12">
+          <button disabled class="bg-gray-500 w-48 text-white font-bold py-2 px-4 rounded opacity-50 cursor-not-allowed">
+            <i class="fas fa-robot mr-2"></i>
+            <span>Coming soon...</span>
+          </button>
+        </div>
+        
       </div>
     </div>
     
-    
-    <!-- button -->
-    <div class="flex justify-center mt-16">
-      <button class="flex justify-between w-32 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg inline-flex items-center">
-        <i class="fas fa-robot"></i>
-        <span>Analyze</span>
-      </button>
+    <!-- application image -->
+    <div v-if="Object.keys(formResultStartup).length === 0" class="mt-16 flex justify-center mb-4">
+      <img alt="Vue logo" src="/images/nicole_ai.png">
+    </div>  
+
+    <!-- loading indicator -->
+    <div v-if="isLoading" class="indicator-modal">
+      <div class="indicator-content flex text-white font-bold">
+        <div class="spinner"></div>
+        <div class="flex items-center justify-center">We are analyzing...</div>
+      </div>
     </div>
 
-    <div class="mt-32 flex justify-center mt-24">
-      <img alt="Vue logo" src="./assets/nicole_ai.png">
-    </div>  
   </div>
 </div>
 
-<script>
+<script type="module">
   const { createApp, ref } = Vue
 
   createApp({
     setup() {
-      const message = ref('Startup Idea')
+      // common
       const tabs = [
         { name: 'Startup'},
         { name: 'Teams'},
@@ -199,10 +279,47 @@ rel="stylesheet"
       ]
       const activeTab = ref('Startup')
 
+      // Startup
+      const formDataStartup = ref({
+        idea: ""
+      })
+      let formResultStartup = ref({})
+      const isLoading = ref(false)
+
+      const submitStartupForm = async () => {
+        isLoading.value = true
+        try {
+            const response = await fetch('https://debisoft-magic.hf.space/api/predict', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ data: [formDataStartup.value.idea] })
+          });
+
+          if(!response.ok) {
+            throw new Error(`HTTP error. Wait for a minute and please try again`);
+          }
+          var responseData        = await response.json()
+          formResultStartup.value = JSON.parse(responseData.data)
+        } catch (error) {
+          console.log(error)
+          alert("Error")
+        } finally {
+          isLoading.value = false
+        }
+      }
+
       return {
-        message,
+        // common
         tabs,
-        activeTab
+        activeTab,
+        isLoading,
+        // Startup
+        formDataStartup,
+        formResultStartup,
+        submitStartupForm,
+        
       }
     }
   }).mount('#app')
@@ -217,7 +334,6 @@ rel="stylesheet"
   text-align: center;
   color: #2c3e50;
   background-color: black;
-  height: 100vh;
 }
 
 button.active {
@@ -227,5 +343,44 @@ button.active {
 button:not(.active) {
   border-bottom: 2px solid transparent;
 }
+
+.indicator-modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.indicator-content {
+  text-align: center;
+  background-color: #1A1A1A;
+  padding: 20px;
+  border-radius: 10px;
+  position: relative;
+}
+
+.spinner {
+  margin-right:12px;
+  border: 4px solid transparent;
+  border-top-color: #929292;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  left: calc(50% - 25px);
+  top: calc(50% - 25px);
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 </style>
 
