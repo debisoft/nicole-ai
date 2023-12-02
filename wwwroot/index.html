@@ -58,7 +58,7 @@ rel="stylesheet"
           <!-- response display area-->
           <template v-if="Object.keys(formResultStartup).length > 0">
             
-            <div class="grid gap-6 text-white">
+            <div class="grid gap-6 text-white mb-12">
               <!-- features -->
               <div class="flex flex-col items-start border-b border-gray-700">
                 <div class="text-2xl">Features</div>
@@ -188,7 +188,7 @@ rel="stylesheet"
         <!-- response display area-->
         <template v-if="Object.keys(formResultTeams).length > 0">
             
-          <div class="grid gap-6 text-white">
+          <div class="grid gap-6 text-white mb-12">
             <!-- features -->
             <div class="flex flex-col items-start border-b border-gray-700">
               <div class="text-2xl">Features</div>
@@ -255,7 +255,7 @@ rel="stylesheet"
                 class="bg-transparent border-none placeholder-gray-400 text-white outline-none w-full"
               />
             </div>
-          <!-- Is developing_input box -->
+             <!-- Is developing_input box -->
             <div class="flex py-2 gap-4 border-b border-gray-200 border-1">
               <div class="text-white font-bold flex-shrink-0">
                 Is developing
@@ -324,15 +324,76 @@ rel="stylesheet"
               <span>Analyze</span>
             </button>
           </div>
+        </form>
 
-        </div>
+        <!-- response display area-->
+        <template v-if="Object.keys(formResultEnterprise).length > 0">
+                
+          <div class="grid gap-6 text-white mb-12">
+            <!-- Score -->
+            <div class="flex flex-col items-start border-b border-gray-700">
+              <div class="text-2xl">Score</div>
+              <div class="text-md text-left mb-2">{{formResultEnterprise["score"] }} / 10</div>
+            </div>
+            <!-- features -->
+            <div class="flex flex-col items-start border-b border-gray-700">
+              <div class="text-2xl">Features</div>
+              <div class="text-md text-left mb-2">{{formResultEnterprise["features"] }}</div>
+            </div>
+            <!-- will they use -->
+            <div class="flex flex-col items-start border-b border-gray-700">
+              <div class="text-2xl">Will people use?</div>
+              <div class="text-md text-left mb-2">
+                <div v-if="formResultEnterprise['fg_will_use']">
+                  Yes, definitely
+                </div>
+                <div v-else>
+                  No, it doesn't seem to be used
+                </div>
+              </div>
+            </div>
+            <!-- reason to use -->
+            <div class="flex flex-col items-start border-b border-gray-700">
+              <div class="text-2xl">Reason to use</div>
+              <div class="text-md text-left mb-2">{{formResultEnterprise["reason_to_use"] }}</div>
+            </div>
+            <!-- solution -->
+            <div class="flex flex-col items-start border-b border-gray-700">
+              <div class="text-2xl">Solution</div>
+              <div class="text-md text-left mb-2">{{formResultEnterprise["solution"] }}</div>
+            </div>
+            <!-- target customer -->
+            <div class="flex flex-col items-start border-b border-gray-700">
+              <div class="text-2xl">Target customer</div>
+              <div class="text-md text-left mb-2">{{formResultEnterprise["target_customer"] }}</div>
+            </div>
+            <!-- will they pay -->
+            <div class="flex flex-col items-start border-b border-gray-700">
+              <div class="text-2xl">Will clients buy?</div>
+              <div class="text-md text-left mb-2">
+                <div v-if="formResultEnterprise['fg_will_pay']">
+                  Yes, definitely
+                </div>
+                <div v-else>
+                  No, it looks like they won't pay
+                </div>
+              </div>
+            </div>
+            <!-- Reason to invest -->
+            <div class="flex flex-col items-start border-b border-gray-700">
+              <div class="text-2xl">Reason to invest</div>
+              <div class="text-md text-left mb-2">{{formResultEnterprise["reason_to_invest"] }}</div>
+            </div>
+          </div>
+        </template>
+    
       </div>
-    </form>
+    </div>
       
     <!-- application image -->
     <div 
-      v-if="Object.keys(formResultStartup).length === 0 && Object.keys(formResultTeams).length === 0" 
-      class="mt-16 flex justify-center mb-4"
+      v-if="Object.keys(formResultStartup).length === 0 && Object.keys(formResultTeams).length === 0 && Object.keys(formResultEnterprise).length === 0" 
+      class="mt-16 flex justify-center mb-12"
     >
       <img alt="Vue logo" src="/images/nicole_ai.png">
     </div>  
