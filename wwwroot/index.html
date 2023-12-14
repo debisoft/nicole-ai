@@ -5,9 +5,10 @@
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
 rel="stylesheet"
 />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <div id="app" class="min-h-screen">
-  <div class="grid gap-4 mx-64">
+  <div class="grid gap-4 lg:mx-64 sm:mx-12 mx-4">
 
     <!-- tabs -->
     <div class="mt-16 text-white text-4xl font-bold text-left">
@@ -16,7 +17,7 @@ rel="stylesheet"
       v-for="tab in tabs"
       :key="tab.name"
       @click="activeTab = tab.name"
-      :class="['w-24', 'mr-8', { 'text-white text-3xl font-bold': activeTab === tab.name, 'text-xl text-gray-500': activeTab !== tab.name }]"
+      :class="['sm:w-24', 'w-16', 'mr-8', { 'text-white sm:text-3xl text-2xl font-bold': activeTab === tab.name, 'text-xl sm:text-md text-gray-500': activeTab !== tab.name }]"
       > 
         {{ tab.name }}
       </button>
@@ -648,9 +649,6 @@ button:not(.active) {
   top: 20%;
   left: 50%;
   transform: translate(-50%, -50%);
-  /* border: 1px solid #000; */
-  /* padding: 10px; */
-  /* background-color: white; */
 }
 
 </style>
