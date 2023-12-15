@@ -5,9 +5,10 @@
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
 rel="stylesheet"
 />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <div id="app" class="min-h-screen">
-  <div class="grid gap-4 mx-64">
+  <div class="grid gap-4 lg:mx-64 sm:mx-12 mx-4">
 
     <!-- tabs -->
     <div class="mt-16 text-white text-4xl font-bold text-left">
@@ -16,7 +17,7 @@ rel="stylesheet"
       v-for="tab in tabs"
       :key="tab.name"
       @click="activeTab = tab.name"
-      :class="['w-24', 'mr-8', { 'text-white text-3xl font-bold': activeTab === tab.name, 'text-xl text-gray-500': activeTab !== tab.name }]"
+      :class="['sm:w-24', 'w-16', 'mr-8', { 'text-white sm:text-3xl text-2xl font-bold': activeTab === tab.name, 'text-xl sm:text-md text-gray-500': activeTab !== tab.name }]"
       > 
         {{ tab.name }}
       </button>
@@ -123,7 +124,7 @@ rel="stylesheet"
               <input
                 v-model="formDataTeams.company"
                 type="text"
-                placeholder="Describe your idea"
+                placeholder="Name of company"
                 class="bg-transparent border-none placeholder-gray-400 text-white outline-none w-full"
               />
             </div>
@@ -251,7 +252,7 @@ rel="stylesheet"
               <input
                 v-model="formDataEnterprise.company"
                 type="text"
-                placeholder="Describe your idea"
+                placeholder="Name of company"
                 class="bg-transparent border-none placeholder-gray-400 text-white outline-none w-full"
               />
             </div>
@@ -330,11 +331,6 @@ rel="stylesheet"
         <template v-if="Object.keys(formResultEnterprise).length > 0">
                 
           <div class="grid gap-6 text-white mb-12">
-            <!-- Score -->
-            <div class="flex flex-col items-start border-b border-gray-700">
-              <div class="text-2xl">Score</div>
-              <div class="text-md text-left mb-2">{{formResultEnterprise["score"] }} / 10</div>
-            </div>
             <!-- features -->
             <div class="flex flex-col items-start border-b border-gray-700">
               <div class="text-2xl">Features</div>
@@ -376,6 +372,18 @@ rel="stylesheet"
                 </div>
                 <div v-else>
                   No, it looks like they won't pay
+                </div>
+              </div>
+            </div>
+            <!-- Will investor invest? -->
+            <div class="flex flex-col items-start border-b border-gray-700">
+              <div class="text-2xl">Will investor invest?</div>
+              <div class="text-md text-left mb-2">
+                <div v-if="formResultEnterprise['fg_will_invest']">
+                  Yes, definitely
+                </div>
+                <div v-else>
+                  No, it looks like they won't invest
                 </div>
               </div>
             </div>
@@ -457,7 +465,7 @@ rel="stylesheet"
           var responseData        = await response.json()
           formResultStartup.value = JSON.parse(responseData.data)
         } catch (error) {
-          alert("Error")
+          alert("Our LLM is currently busy, please try again in a few minutes...")
         } finally {
           isLoading.value = false
         }
@@ -505,7 +513,7 @@ rel="stylesheet"
           var responseTeamsData = await response.json()
           formResultTeams.value = JSON.parse(responseTeamsData.data)
         } catch (error) {
-          alert("Error")
+          alert("Our LLM is currently busy, please try again in a few minutes...")
         } finally {
           isLoading.value = false
         }
@@ -556,7 +564,7 @@ rel="stylesheet"
           var responseEnterpriseData = await response.json()
           formResultEnterprise.value = JSON.parse(responseEnterpriseData.data)
         } catch (error) {
-          alert("Error")
+          alert("Our LLM is currently busy, please try again in a few minutes...")
         } finally {
           isLoading.value = false
         }
@@ -648,9 +656,6 @@ button:not(.active) {
   top: 20%;
   left: 50%;
   transform: translate(-50%, -50%);
-  /* border: 1px solid #000; */
-  /* padding: 10px; */
-  /* background-color: white; */
 }
 
 </style>
